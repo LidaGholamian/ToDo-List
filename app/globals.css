@@ -1,27 +1,29 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@import "./tailwind/components.css";
 
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --color-primary: theme("colors.primary");
+    --color-secondary: theme("colors.secondary");
+    --color-accent: theme("colors.accent");
+    --color-neutral: theme("colors.neutral");
+    --color-error: theme("colors.error");
+    --color-gradient-first: theme("colors.gradient-first");
+    --color-gradient-second: theme("colors.gradient-second");
+  }
+
+  html {
+    font-family: var(--font-vazirmatn);
+  }
+
+  :lang(en) {
+    font-family: var(--font-figtree);
   }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+.gradient {
+  @apply bg-gradient-to-r from-gradient-first to-gradient-second;
 }

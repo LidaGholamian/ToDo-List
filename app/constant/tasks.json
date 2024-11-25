@@ -1,0 +1,17 @@
+[
+    {
+        "id": 1,
+        "title": "task 1",
+        "favIcon": true
+      },
+      {
+        "id": 2,
+        "title": "task 2",
+        "favIcon": false
+      },
+      {
+        "id": 3,
+        "title": "task 3",
+        "favIcon": true
+      }
+]

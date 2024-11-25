@@ -1,0 +1,6 @@
+.list {
+  @apply max-h-72 min-h-10 w-full mt-3 mb-3 gap-2 flex flex-col justify-start items-start list-none shadow-lg;
+  .list-item {
+    @apply bg-grey/5 hover:bg-grey/20 w-full shadow-sm flex justify-between items-center;
+  }
+}
