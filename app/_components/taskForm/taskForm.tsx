@@ -2,9 +2,10 @@
 
 import { useTodoContext } from "@/app/context";
 import React, { useState } from "react";
+import { toast } from "react-hot-toast";
 
 export const TaskForm: React.FC = () => {
-  const { todos, addTodo, toggleTodo, deleteTodo } = useTodoContext();
+  const { addTodo } = useTodoContext();
   const [newTodo, setNewTodo] = useState("");
 
   const handleAddTodo = () => {
@@ -13,8 +14,13 @@ export const TaskForm: React.FC = () => {
       setNewTodo("");
     }
   };
+
+  const handleToastClick = () => {
+    toast.success("Task added successfully"); // Displays a success message
+  };
+
   return (
-    <div className="w-full ">
+    <div className="w-full">
       <p className="text-xs md:text-base lg:text-base xl:text-base text-neutral font-semibold">
         Tasks*
       </p>
@@ -36,8 +42,12 @@ export const TaskForm: React.FC = () => {
           className="flex-grow border border-gray-300 rounded p-2"
         ></textarea>
       </div>
+
       <button
-        onClick={handleAddTodo}
+        onClick={() => {
+          handleAddTodo();
+          handleToastClick();
+        }}
         className="bg-primary text-white text-xs md:text-base lg:text-base xl:text-base px-4 py-2 rounded"
       >
         Add

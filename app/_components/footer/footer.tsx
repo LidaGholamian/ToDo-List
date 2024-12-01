@@ -5,7 +5,7 @@ export const Footer: React.FC = () => {
   return (
     <div
       dir="ltr"
-      className="flex flex-col justify-start items-center pb-4 text-white gradient w-full container"
+      className="flex flex-col justify-start items-center pb-4 text-white w-full container"
     >
       <div className="w-[65%] mx-auto flex flex-col gap-4 justify-start items-start">
         <div className="flex justify-center gap-2 items-center">

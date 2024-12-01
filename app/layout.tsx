@@ -62,12 +62,14 @@ export default function RootLayout({
   return (
     <html className={`${vazirmatn.variable} ${figtree.variable}`}>
       <body
-        className={`min-h-screen grid grid-rows-[80px_1fr_auto] container ${
+        className={`min-h-screen max-h-screen grid grid-rows-[80px_1fr_auto] container gradient ${
           process.env.NODE_ENV == "development" ? "debug-screens" : ""
         }`}
       >
         <Header />
+
         <main>{children}</main>
+
         <Footer />
       </body>
     </html>

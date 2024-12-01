@@ -11,6 +11,6 @@
     }
   }
   .tab-content {
-    @apply leading-10 text-lg min-h-screen w-full;
+    @apply leading-10 text-lg max-h-screen w-full;
   }
 }
