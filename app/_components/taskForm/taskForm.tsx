@@ -7,16 +7,24 @@ import { toast } from "react-hot-toast";
 export const TaskForm: React.FC = () => {
   const { addTodo } = useTodoContext();
   const [newTodo, setNewTodo] = useState("");
+  const [description, setDescription] = useState("");
 
   const handleAddTodo = () => {
     if (newTodo.trim()) {
       addTodo(newTodo);
+      toast.success("Task added successfully");
       setNewTodo("");
+    } else if (newTodo.trim() === "") {
+      // No task text, do nothing or show a warning toast
+      toast.error("Please enter a task before adding!");
+      return;
     }
   };
 
-  const handleToastClick = () => {
-    toast.success("Task added successfully"); // Displays a success message
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      handleAddTodo();
+    }
   };
 
   return (
@@ -29,25 +37,14 @@ export const TaskForm: React.FC = () => {
           type="text"
           value={newTodo}
           onChange={(e) => setNewTodo(e.target.value)}
+          onKeyDown={handleKeyDown}
           placeholder="Add a new task..."
           className="flex-grow border border-gray-300 rounded p-2"
         />
       </div>
-      <div className="flex flex-col gap-2 mb-4">
-        <p className="text-xs md:text-base lg:text-base xl:text-base text-neutral font-semibold">
-          Description*
-        </p>
-        <textarea
-          placeholder="Add some description..."
-          className="flex-grow border border-gray-300 rounded p-2"
-        ></textarea>
-      </div>
 
       <button
-        onClick={() => {
-          handleAddTodo();
-          handleToastClick();
-        }}
+        onClick={handleAddTodo}
         className="bg-primary text-white text-xs md:text-base lg:text-base xl:text-base px-4 py-2 rounded"
       >
         Add
