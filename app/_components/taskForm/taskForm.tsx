@@ -5,20 +5,19 @@ import React, { useState } from "react";
 import { toast } from "react-hot-toast";
 
 export const TaskForm: React.FC = () => {
-  const { addTodo } = useTodoContext();
+  const { state, dispatch } = useTodoContext();
+
   const [newTodo, setNewTodo] = useState("");
-  const [description, setDescription] = useState("");
 
   const handleAddTodo = () => {
-    if (newTodo.trim()) {
-      addTodo(newTodo);
-      toast.success("Task added successfully");
-      setNewTodo("");
-    } else if (newTodo.trim() === "") {
+    if (newTodo.trim() === "") {
       // No task text, do nothing or show a warning toast
       toast.error("Please enter a task before adding!");
       return;
     }
+    dispatch({ type: "ADD_TASK", payload: newTodo });
+    toast.success("Task added successfully!");
+    setNewTodo("");
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
