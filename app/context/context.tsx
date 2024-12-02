@@ -1,6 +1,12 @@
 "use client";
 
-import { createContext, useContext, useReducer, useState } from "react";
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useReducer,
+  useState,
+} from "react";
 import { Todo } from "../_components/types/list.type";
 import { TodoAction, TodoState } from "../types/todoContext.type";
 
@@ -47,7 +53,21 @@ const TodoContext = createContext<{
 export const TodoProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
-  const [state, dispatch] = useReducer(todoReducer, initialState);
+  // const [state, dispatch] = useReducer(todoReducer, initialState);
+
+  const [state, dispatch] = useReducer(
+    todoReducer,
+    initialState,
+    (initialState: TodoState): TodoState => {
+      const savedTodos = localStorage.getItem("todos");
+      return savedTodos ? { todos: JSON.parse(savedTodos) } : initialState;
+    }
+  );
+
+  // Persist tasks to localStorage whenever they change
+  useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(state.todos));
+  }, [state.todos]);
 
   return (
     <TodoContext.Provider value={{ state, dispatch }}>

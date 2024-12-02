@@ -3,7 +3,6 @@ import { Tabs } from "../tabs";
 import { TodoList } from "../todoList";
 import { TaskForm } from "../taskForm";
 import { Toaster } from "react-hot-toast";
-import { CompletedTasks } from "../compeletTodos";
 
 export const TodoContainer: React.FC = () => {
   const tabs: Tab[] = [
@@ -14,10 +13,6 @@ export const TodoContainer: React.FC = () => {
     {
       label: "Task Form",
       content: <TaskForm />,
-    },
-    {
-      label: "Completed",
-      content: <CompletedTasks />,
     },
   ];
 

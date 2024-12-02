@@ -2,6 +2,7 @@
 
 import { MdDeleteOutline } from "react-icons/md";
 import { useTodoContext } from "@/app/context";
+import toast from "react-hot-toast";
 
 export const TodoList = () => {
   const { state, dispatch } = useTodoContext();
