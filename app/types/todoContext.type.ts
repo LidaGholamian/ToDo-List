@@ -15,3 +15,4 @@ export type TodoContextType= {
   | { type: "ADD_TASK"; payload: string }
   | { type: "DELETE_TASK"; payload: number }
   | { type: "TOGGLE_TASK"; payload: number }
+  | { type: "INITIALIZE_TASKS"; payload: Todo[] };

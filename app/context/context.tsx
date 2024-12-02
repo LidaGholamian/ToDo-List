@@ -38,6 +38,8 @@ const todoReducer = (state: TodoState, action: TodoAction): TodoState => {
             : todo
         ),
       };
+    case "INITIALIZE_TASKS":
+      return { todos: action.payload };
 
     default:
       return state;
@@ -53,22 +55,47 @@ const TodoContext = createContext<{
 export const TodoProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
-  // const [state, dispatch] = useReducer(todoReducer, initialState);
+  const [isClient, setIsClient] = useState(false);
 
   const [state, dispatch] = useReducer(
     todoReducer,
     initialState,
     (initialState: TodoState): TodoState => {
-      const savedTodos = localStorage.getItem("todos");
-      return savedTodos ? { todos: JSON.parse(savedTodos) } : initialState;
+      if (typeof window !== "undefined") {
+        const savedTodos = localStorage.getItem("todos");
+        return savedTodos ? { todos: JSON.parse(savedTodos) } : initialState;
+      }
+      return initialState;
     }
   );
 
-  // Persist tasks to localStorage whenever they change
   useEffect(() => {
-    localStorage.setItem("todos", JSON.stringify(state.todos));
-  }, [state.todos]);
+    // Ensure that the code is running only in the browser
+    setIsClient(true);
+  }, []);
 
+  // Load tasks from localStorage once the component has mounted (client-side only)
+  useEffect(() => {
+    if (isClient && typeof window !== "undefined") {
+      const savedTodos = localStorage.getItem("todos");
+      if (savedTodos) {
+        dispatch({ type: "INITIALIZE_TASKS", payload: JSON.parse(savedTodos) });
+      }
+    }
+  }, [isClient]);
+
+  // Persist tasks to localStorage whenever tasks change (client-side only)
+  useEffect(() => {
+    if (isClient && typeof window !== "undefined") {
+      // Whenever the tasks array changes (add, delete, toggle), save to localStorage
+      localStorage.setItem("todos", JSON.stringify(state.todos));
+    }
+  }, [state.todos, isClient]);
+
+  // Render nothing initially on the server
+  if (!isClient) {
+    return null;
+  }
   return (
     <TodoContext.Provider value={{ state, dispatch }}>
       {children}
