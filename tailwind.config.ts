@@ -14,7 +14,7 @@ export const tailwindColors: {[key: string]: string} = {
   current: "currentColor",
     transparent: "transparent",
     white: "#F9F9F9",
-    primary: "#9F2B68",
+    primary: "#73bdb7",
     "primary-content": "#FFFFFF",
     "primary-focus": generateDarkenColorFrom("#007BEC"),
     secondary: "#6c5ce7",
@@ -37,6 +37,7 @@ export const tailwindColors: {[key: string]: string} = {
     "base-content": "#A6ADBB",
     error: "#f87272",
     "error-content": generateForegroundColorFrom("#f87272"),
+    "error-focus": generateDarkenColorFrom("#f87272", 0.03),
     "gradient-first": "#702963",
     "gradient-second": "#301934",
     

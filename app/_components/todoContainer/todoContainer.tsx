@@ -17,12 +17,12 @@ export const TodoContainer: React.FC = () => {
   ];
 
   return (
-    <div className="flex flex-col items-center w-[65%] mb-10 bg-white shadow-2xl container">
+    <div className="flex flex-col items-center w-[80%] mb-10 bg-white shadow-2xl rounded-lg container">
       <Toaster position="bottom-left" reverseOrder={false} />
-      <div className="w-full flex justify-center items-center bg-primary h-[50px]">
+      <div className="w-full flex justify-center items-center bg-primary h-[50px] rounded-t-lg">
         <p className="text-xl text-white font-semibold">ToDo List</p>
       </div>
-      <div className="p-5 flex justify-center items-start w-full">
+      <div className="p-5 flex justify-center w-full">
         <Tabs tabs={tabs} />
       </div>
     </div>

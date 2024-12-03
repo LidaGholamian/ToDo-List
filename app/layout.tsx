@@ -6,6 +6,8 @@ import localFont from "next/font/local";
 import { Footer } from "./_components/footer";
 import { Header } from "./_components/header";
 
+import { Providers } from "./providers";
+
 const figtree = Figtree({
   display: "swap",
   subsets: ["latin"],
@@ -60,17 +62,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html className={`${vazirmatn.variable} ${figtree.variable}`}>
+    <html
+      className={`${vazirmatn.variable} ${figtree.variable}`}
+      suppressHydrationWarning
+    >
       <body
-        className={`min-h-screen max-h-screen grid grid-rows-[80px_1fr_auto] container gradient ${
+        className={`min-h-screen max-h-screen grid grid-rows-[80px_1fr_auto] ${
           process.env.NODE_ENV == "development" ? "debug-screens" : ""
         }`}
       >
-        <Header />
-
-        <main>{children}</main>
-
-        <Footer />
+        <Providers>
+          <Header />
+          <main>{children}</main>
+          <Footer />
+        </Providers>
       </body>
     </html>
   );

@@ -1,11 +1,13 @@
 import { ImCheckmark } from "react-icons/im";
+import { ThemeSwitch } from "../themeSwitch";
 
 export const Header: React.FC = () => {
   return (
-    <div className="flex justify-between items-center text-neutral p-4 container h-[80px]">
-      <div className="w-[65%] mx-auto flex justify-between items-center">
-        <ImCheckmark className="text-xl text-white" />
-        <span className="text-xl text-white">ToDo List</span>
+    <div className="flex justify-between items-center h-[80px] dark:text-white text-neutral text-xl">
+      <div className="w-[80%] mx-auto flex justify-between items-center ">
+        <ThemeSwitch />
+        <ImCheckmark />
+        <span>ToDo List</span>
       </div>
     </div>
   );

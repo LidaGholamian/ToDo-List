@@ -38,7 +38,7 @@ export const TaskForm: React.FC = () => {
           onChange={(e) => setNewTodo(e.target.value)}
           onKeyDown={handleKeyDown}
           placeholder="Add a new task..."
-          className="flex-grow border border-gray-300 rounded p-2"
+          className="flex-grow border border-gray-300 rounded p-2 dark:bg-grey/15 dark:text-neutral text-neutral/80"
         />
       </div>
 
