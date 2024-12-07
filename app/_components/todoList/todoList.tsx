@@ -97,11 +97,11 @@ export const TodoList = () => {
             {state.todos.map((todo) => (
               <li
                 key={todo.id}
-                className="flex items-center justify-between dark:bg-grey/15 dark:hover:bg-grey/25 bg-grey/5 hover:bg-grey/15 p-2 rounded-md gap-3"
+                className="flex items-center justify-between dark:bg-grey/15 dark:hover:bg-grey/25 bg-grey/5 hover:bg-grey/15 p-2 rounded-md gap-2"
                 draggable
               >
                 <div
-                  className="flex justify-between items-center flex-grow cursor-pointer text-neutral-content dark:text-white"
+                  className="flex justify-between items-center flex-grow cursor-pointer text-neutral-content dark:text-white gap-7"
                   onClick={() =>
                     dispatch({ type: "TOGGLE_TASK", payload: todo.id })
                   }

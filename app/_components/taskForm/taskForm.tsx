@@ -42,20 +42,20 @@ export const TaskForm: React.FC = () => {
       <p className="text-xs md:text-base lg:text-base xl:text-base text-neutral dark:text-white font-semibold">
         Tasks*
       </p>
-      <div className="flex gap-2 mb-4">
+      <div className="flex gap-2 mb-4 w-[100%]">
         <input
           type="text"
           value={newTodo}
           onChange={(e) => setNewTodo(e.target.value)}
           onKeyDown={handleKeyDown}
           placeholder="Add a new task..."
-          className="flex-grow border border-gray-300 rounded p-2 dark:bg-grey/15 dark:text-white text-neutral/80"
+          className="flex-grow w-[80%] border border-gray-300 rounded p-2 dark:bg-grey/15 dark:text-white text-neutral/80"
         />
         <DatePicker
           selected={selectedDate}
           onChange={(date: Date | null) => setSelectedDate(date)}
           placeholderText="set a date please"
-          className="form-control form-control-solid w-250px border-grey/15 dark:bg-grey/15 dark:text-white text-neutral/80 rounded p-2 "
+          className="form-control form-control-solid w-full border-grey/15 dark:bg-grey/15 dark:text-white text-neutral/80 rounded p-2 "
           isClearable={true}
         />
       </div>
