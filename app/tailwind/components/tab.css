@@ -6,7 +6,7 @@
       @apply text-current font-bold pb-2 transition-all duration-75 border-b border-transparent text-sm xl:text-xl;
 
       &.tab-active {
-        @apply text-primary border-b border-primary;
+        @apply text-blue border-b border-blue;
       }
     }
   }

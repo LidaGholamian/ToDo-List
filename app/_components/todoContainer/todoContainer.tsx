@@ -17,9 +17,9 @@ export const TodoContainer: React.FC = () => {
   ];
 
   return (
-    <div className="flex flex-col items-center w-[80%] mb-10 bg-white shadow-2xl rounded-lg container">
+    <div className="flex flex-col items-center w-[80%] mb-10 bg-white dark:bg-secondary shadow-2xl rounded-lg container  overflow-y-auto">
       <Toaster position="bottom-left" reverseOrder={false} />
-      <div className="w-full flex justify-center items-center bg-primary h-[50px] rounded-t-lg">
+      <div className="w-full flex justify-center items-center bg-blue h-[50px] rounded-t-lg">
         <p className="text-xl text-white font-semibold">ToDo List</p>
       </div>
       <div className="p-5 flex justify-center w-full">

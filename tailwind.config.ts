@@ -17,9 +17,9 @@ export const tailwindColors: {[key: string]: string} = {
     primary: "#73bdb7",
     "primary-content": "#FFFFFF",
     "primary-focus": generateDarkenColorFrom("#007BEC"),
-    secondary: "#6c5ce7",
+    secondary: "#13274F",
     "secondary-content": "#FFFFFF",
-    "secondary-focus": generateDarkenColorFrom("#6c5ce7"),
+    "secondary-focus": generateDarkenColorFrom("#13274F", 0.03),
     accent: "#1FB2A5",
     "accent-content": "#FFFFFF",
     "accent-focus": generateDarkenColorFrom("#1FB2A5"),
@@ -40,6 +40,7 @@ export const tailwindColors: {[key: string]: string} = {
     "error-focus": generateDarkenColorFrom("#f87272", 0.03),
     "gradient-first": "#702963",
     "gradient-second": "#301934",
+    blue: "#4B9CD3",
     
 }
 

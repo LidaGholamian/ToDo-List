@@ -20,9 +20,9 @@ const todoReducer = (state: TodoState, action: TodoAction): TodoState => {
     case "ADD_TASK":
       const addTodo: Todo = {
         id: Date.now(),
-        title: action.payload,
+        title: action.payload.title, // Get title from payload
         completed: false,
-        date: new Date().toISOString(),
+        date: action.payload.date || new Date().toISOString(), // Get date from payload
       };
       return { todos: [...state.todos, addTodo] };
 
@@ -38,8 +38,9 @@ const todoReducer = (state: TodoState, action: TodoAction): TodoState => {
             : todo
         ),
       };
-    case "INITIALIZE_TASKS":
-      return { todos: action.payload };
+
+    case "REORDER_TASKS":
+      return { ...state, todos: action.payload };
 
     default:
       return state;

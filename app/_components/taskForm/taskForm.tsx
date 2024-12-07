@@ -2,12 +2,15 @@
 
 import { useTodoContext } from "@/app/context";
 import React, { useState } from "react";
+import DatePicker from "react-datepicker";
 import { toast } from "react-hot-toast";
+import "react-datepicker/dist/react-datepicker.css";
 
 export const TaskForm: React.FC = () => {
-  const { state, dispatch } = useTodoContext();
+  const { dispatch } = useTodoContext();
 
   const [newTodo, setNewTodo] = useState("");
+  const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
 
   const handleAddTodo = () => {
     if (newTodo.trim() === "") {
@@ -15,7 +18,15 @@ export const TaskForm: React.FC = () => {
       toast.error("Please enter a task before adding!");
       return;
     }
-    dispatch({ type: "ADD_TASK", payload: newTodo });
+    dispatch({
+      type: "ADD_TASK",
+      payload: {
+        title: newTodo,
+        date: selectedDate
+          ? selectedDate.toISOString()
+          : new Date().toISOString(),
+      }, // Pass both title and date
+    });
     toast.success("Task added successfully!");
     setNewTodo("");
   };
@@ -28,7 +39,7 @@ export const TaskForm: React.FC = () => {
 
   return (
     <div className="w-full">
-      <p className="text-xs md:text-base lg:text-base xl:text-base text-neutral font-semibold">
+      <p className="text-xs md:text-base lg:text-base xl:text-base text-neutral dark:text-white font-semibold">
         Tasks*
       </p>
       <div className="flex gap-2 mb-4">
@@ -38,13 +49,20 @@ export const TaskForm: React.FC = () => {
           onChange={(e) => setNewTodo(e.target.value)}
           onKeyDown={handleKeyDown}
           placeholder="Add a new task..."
-          className="flex-grow border border-gray-300 rounded p-2 dark:bg-grey/15 dark:text-neutral text-neutral/80"
+          className="flex-grow border border-gray-300 rounded p-2 dark:bg-grey/15 dark:text-white text-neutral/80"
+        />
+        <DatePicker
+          selected={selectedDate}
+          onChange={(date: Date | null) => setSelectedDate(date)}
+          placeholderText="set a date please"
+          className="form-control form-control-solid w-250px border-grey/15 dark:bg-grey/15 dark:text-white text-neutral/80 rounded p-2 "
+          isClearable={true}
         />
       </div>
 
       <button
         onClick={handleAddTodo}
-        className="bg-primary text-white text-xs md:text-base lg:text-base xl:text-base px-4 py-2 rounded"
+        className="bg-blue text-white text-xs md:text-base lg:text-base xl:text-base px-4 py-2 rounded"
       >
         Add
       </button>
